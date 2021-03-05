@@ -14,7 +14,7 @@ class AccountsTable(BaseTable):
 
 class PersonalDataTable(BaseTable):
     id = Column(Integer, primary_key=True)
-    account_email = Column(Integer, ForeignKey(AccountsTable.email))
+    account_email = Column(String, ForeignKey(AccountsTable.email))
     account = relationship(AccountsTable, uselist=False, backref='personal_data')
     first_name = Column(String)
     last_name = Column(String)
