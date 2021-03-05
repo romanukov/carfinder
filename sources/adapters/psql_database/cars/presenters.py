@@ -1,5 +1,5 @@
 from adapters.psql_database.cars.tables import CarsTable
-from core.accounts.entities import Account
+from core.accounts.entities import Account, PersonalData
 from core.cars.entities import Car, Tag, Review, Extra
 
 
@@ -11,8 +11,10 @@ def present_car(car_table: CarsTable) -> Car:
         year_of_manufacture=car_table.year_of_manufacture,
         hoster=Account(
             email=car_table.hoster.email,
-            # TODO исправить ошибку
-            personal_data=car_table.hoster.personal_data,
+            personal_data=PersonalData(
+                first_name=car_table.hoster.personal_data.first_name,
+                last_name=car_table.hoster.personal_data.last_name,
+            ),
             password_hash=car_table.hoster.password_hash,
             confirmed=car_table.hoster.confirmed,
         ),
