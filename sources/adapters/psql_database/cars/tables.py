@@ -11,7 +11,7 @@ class CarsTable(BaseTable):
     model = Column(String)
     category = Column(String)
     year_of_manufacture = Column(Integer)
-    hoster_email = Column(Integer, ForeignKey(AccountsTable.email))
+    hoster_email = Column(String, ForeignKey(AccountsTable.email))
     hoster = relationship(AccountsTable, uselist=False, backref='cars_table')
     tags = list['TagsTable']
     reviews = list['ReviewsTable']
@@ -32,7 +32,7 @@ class TagsTable:
 
 class ReviewsTable:
     id = Column(Integer, primary_key=True)
-    account_email = Column(Integer, ForeignKey(AccountsTable.email))
+    account_email = Column(String, ForeignKey(AccountsTable.email))
     account = relationship(AccountsTable, uselist=False,
                            backref='reviews_table')
     datetime_of_create = Column(DateTime)
